@@ -6,6 +6,7 @@ var direction = Vector2.DOWN
 var velocity = Vector2.ZERO
 var gravity = Vector2.DOWN * 981
 var djump = 2
+var scene = 0
 
 func _physics_process(delta):
 	velocity += gravity * delta
@@ -18,7 +19,7 @@ func _physics_process(delta):
 		velocity += Vector2.LEFT * base_velocity 
 	
 	if is_on_floor():
-		djump = 5
+		djump = 2
 	
 	if Input.is_action_just_pressed("ui_space") and djump > 0:
 		velocity = Vector2.UP * jump_velocity
@@ -42,3 +43,25 @@ func _physics_process(delta):
 			$AnimatedSprite.animation = "idle"
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+func _on_spikes1_body_entered(body):
+	position = Vector2(40,500)
+
+func _on_spikes3_body_entered(body):
+	position = Vector2(40,500)
+	
+func _on_spikes2_body_entered(body):
+	position = Vector2(40,500)
+
+func _on_coin_body_entered(body):
+	if scene == 0:
+		get_tree().change_scene("res://scenes/map2.tscn")
+		scene += 1
+		Camera2D.limit_right = 1550
+		
+	elif scene == 1:
+		get_tree().change_scene("res://scenes/win.tscn")
+
+func mor():
+	position = Vector2(40,500)
