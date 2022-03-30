@@ -13,6 +13,10 @@ config_version=4
 config/name="Joc 1"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameManager="*res://GameManager.gd"
+
 [input]
 
 ui_left={

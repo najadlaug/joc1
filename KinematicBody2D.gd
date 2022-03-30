@@ -6,7 +6,6 @@ var direction = Vector2.DOWN
 var velocity = Vector2.ZERO
 var gravity = Vector2.DOWN * 981
 var djump = 2
-var scene = 0
 
 func _physics_process(delta):
 	velocity += gravity * delta
@@ -55,12 +54,12 @@ func _on_spikes2_body_entered(body):
 	position = Vector2(40,500)
 
 func _on_coin_body_entered(body):
-	if scene == 0:
+	if GameManager.scene == 0:
 		get_tree().change_scene("res://scenes/map2.tscn")
-		scene += 1
-		Camera2D.limit_right = 1550
+		GameManager.scene += 1
+		$Camera2D.limit_right = 1550
 		
-	elif scene == 1:
+	elif GameManager.scene == 1:
 		get_tree().change_scene("res://scenes/win.tscn")
 
 func mor():
