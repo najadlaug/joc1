@@ -23,24 +23,24 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_space") and djump > 0:
 		velocity = Vector2.UP * jump_velocity
 		djump -= 1
-		
-	if velocity.y != 0:
-		$AnimatedSprite.animation = "jump"
 	
 	if is_on_floor():
 		if velocity.x > 0:
 			$AnimatedSprite.flip_h = false
-			$AnimatedSprite.animation = "walk"
-			$AnimatedSprite.playing = true
+			$AnimatedSprite.play("walk")
+
 			
 		elif velocity.x < 0:
 			$AnimatedSprite.flip_h = true
-			$AnimatedSprite.animation = "walk"
-			$AnimatedSprite.playing = true
+			$AnimatedSprite.play("walk")
 			
 		elif velocity.x == 0:
 			$AnimatedSprite.animation = "idle"
-	
+			
+	else:
+		if abs(velocity.y) > 0.2:
+			$AnimatedSprite.animation = "jump"
+			
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
