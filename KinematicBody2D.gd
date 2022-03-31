@@ -38,8 +38,7 @@ func _physics_process(delta):
 			$AnimatedSprite.animation = "idle"
 			
 	else:
-		if abs(velocity.y) > 0.2:
-			$AnimatedSprite.animation = "jump"
+		$AnimatedSprite.animation = "jump"
 			
 	velocity = move_and_slide(velocity, Vector2.UP)
 
